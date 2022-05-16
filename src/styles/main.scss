@@ -1,26 +1,51 @@
 // --- Bootstrap --- //
 
-// Configuration
+// Configuration.
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/mixins';
 @import 'bootstrap/scss/utilities';
 
-// Layout & components
+// Layout & components (partial).
 @import 'bootstrap/scss/root';
 @import 'bootstrap/scss/containers';
 @import 'bootstrap/scss/grid';
 
-// Helpers
+// Helpers.
 @import 'bootstrap/scss/helpers';
 
-// Utilities
+// Utilities.
 @import 'bootstrap/scss/utilities/api';
 
 // --- Custom styles --- //
 
-$test-size: 24px;
+body {
+  margin: 0;
+  padding: 0;
+}
 
-.text-test {
-  font-size: $test-size;
+.absolute-center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bg-split {
+  background: linear-gradient(90deg, #ddd 0%, #fff 50%, #ddd 50%, #fff 100%);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.text-shadow-dark {
+  text-shadow: 1px 1px 3px $dark, 1px -1px 3px $dark, -1px 1px 3px $dark, -1px -1px 3px $dark;
+}
+
+.text-shadow-light {
+  text-shadow: 1px 1px 2px $light, 1px -1px 2px $light, -1px 1px 2px $light, -1px -1px 2px $light;
 }

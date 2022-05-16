@@ -1,6 +1,6 @@
-# Contrast ratio tool
+# Contrast ratio calculator
 
-> A tool to calculate the contrast ratio between two or more colors.
+> A tool to calculate and compare the contrast ratio of colors.
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
@@ -38,3 +38,7 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## License
+
+Body Fat Calculator is free software; you can redistribute it and/or modify it under the terms of the Mozilla Public License v2.0. You should have received a copy of the MPL 2.0 along with this library, otherwise you can obtain one at http://mozilla.org/MPL/2.0/.
