@@ -20,6 +20,7 @@
 // --- Custom styles --- //
 
 body {
+  font-family: Verdana, Geneva, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -28,6 +29,10 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.bg-gray-200 {
+  background-color: $gray-200;
 }
 
 .bg-split {
@@ -40,6 +45,22 @@ body {
 
 .flex-1 {
   flex: 1;
+}
+
+.fs-lg-1 {
+  font-size: 1.1em;
+}
+
+.fs-lg-2 {
+  font-size: 1.2em;
+}
+
+.fs-sm-1 {
+  font-size: 0.9em;
+}
+
+.fs-sm-2 {
+  font-size: 0.8em;
 }
 
 .text-shadow-dark {

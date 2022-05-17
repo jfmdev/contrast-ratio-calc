@@ -36,6 +36,14 @@
     selectedFore = newColor;
   }
 
+  function randomBackColor() {
+    selectedBack = randomColor();
+  }
+
+  function randomForeColor() {
+    selectedFore = randomColor();
+  }
+
   // TODO: Update URL with list of background and foreground colors (later parse URL for get values).
   // TODO: Add color picker to inputs.
 </script>
@@ -55,11 +63,16 @@
   <div class="d-flex justify-content-center align-items-center my-2">
     <div>
       <!-- TODO: Add box showing the color -->
+      <!-- TODO: Should indicate if color is invalid -->
       <!-- TODO: Add optimize button -->
-      <!-- TODO: Add random color button -->
-      <!-- TODO: Style button and input -->
-      <input type="text" class="text-end" value={selectedBack.hex()} />
+      <!-- TODO: Style buttons -->
+      <input
+        type="text"
+        class="border border-dark rounded-3 p-1 fs-lg-2 text-end"
+        value={selectedBack.hex()}
+      />
       <div class="text-end mt-2">
+        <button on:click={randomBackColor}>Random</button>
         <button on:click={addBackColor}>Add</button>
       </div>
     </div>
@@ -70,12 +83,17 @@
     </div>
     <div>
       <!-- TODO: Add box showing the color -->
+      <!-- TODO: Should indicate if color is invalid -->
       <!-- TODO: Add optimize button -->
-      <!-- TODO: Add random color button -->
-      <!-- TODO: Style button and input -->
-      <input type="text" value={selectedFore.hex()} />
+      <!-- TODO: Style buttons -->
+      <input
+        type="text"
+        class="border border-dark rounded-3 p-1 fs-lg-2"
+        value={selectedFore.hex()}
+      />
       <div class="text-start mt-2">
         <button on:click={addForeColor}>Add</button>
+        <button on:click={randomForeColor}>Random</button>
       </div>
     </div>
   </div>
@@ -141,16 +159,15 @@
   </div>
 </main>
 
-<!-- TODO: Style footer -->
-<footer class="bg-light border-top border-dark text-center py-2">
-  <div>Copyright &copy; 2022</div>
-  <div>
-    This application is free software; you can redistribute it and/or modify it under the terms of
-    the Mozilla Public License v2.0
-  </div>
-  <div>
+<footer class="bg-gray-200 border-top border-dark text-center fs-sm-2">
+  <p class="my-1">
+    <strong>Copyright &copy; 2022</strong> |
     <a href="https://github.com/jfmdev/contrast-ratio-tool" title="See this project at Github"
       >https://github.com/jfmdev/contrast-ratio-tool</a
     >
-  </div>
+  </p>
+  <p class="my-1">
+    This application is free software; you can redistribute it and/or modify it under the terms of
+    the Mozilla Public License v2.0
+  </p>
 </footer>
