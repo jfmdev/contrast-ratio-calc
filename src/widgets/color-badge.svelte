@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import uniqueId from '../helpers/unique-id';
+  import { uniqueId } from '../helpers/misc';
 
   const dispatch = createEventDispatcher();
 
@@ -15,6 +15,7 @@
   // Internal variables.
   let id = uniqueId('radio-color-');
   $: labelClass = color.isDark() ? 'text-light' : 'text-dark';
+  $: isChecked = selected && selected.rgbNumber() === color.rgbNumber();
 
   // Functions.
   function onChange() {
@@ -36,7 +37,7 @@
     name={radioName}
     value={color.rgbNumber()}
     class="my-0 mx-1"
-    checked={selected === color}
+    checked={isChecked}
     on:change={onChange}
   />
   <label for={id} class={`font-monospace clickable ${labelClass}`}>{color.hex()}</label>

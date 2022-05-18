@@ -1,8 +1,10 @@
 <script>
   import '../styles/main.scss';
-  import Color from 'color';
+
+  import { randomColor } from '../helpers/misc';
 
   import ColorBadge from '../widgets/color-badge.svelte';
+  import ColorInput from '../widgets/color-input.svelte';
   import ContrastChart from '../widgets/contrast-chart.svelte';
 
   // TODO: Initialize lists with Bootstrap default color.
@@ -12,40 +14,11 @@
   let selectedBack = backColors[backColors.length - 1];
   let selectedFore = foreColors[0];
 
-  function randomColor() {
-    return Color.rgb(
-      Math.floor(Math.random() * 255),
-      Math.floor(Math.random() * 255),
-      Math.floor(Math.random() * 255)
-    );
-  }
-
-  function addBackColor() {
-    // TODO: This should be the input's color (if different from existing ones).
-    const newColor = randomColor();
-    backColors.push(newColor);
-    backColors = backColors;
-    selectedBack = newColor;
-  }
-
-  function addForeColor() {
-    // TODO: This should be the input's color (if different from existing ones).
-    const newColor = randomColor();
-    foreColors.unshift(newColor);
-    foreColors = foreColors;
-    selectedFore = newColor;
-  }
-
-  function randomBackColor() {
-    selectedBack = randomColor();
-  }
-
-  function randomForeColor() {
-    selectedFore = randomColor();
-  }
+  // CAVEAT: Since Svelte don't has "watchers", I need to manually notify the color inputs when a badge is clicked.
+  let backRef;
+  let foreRef;
 
   // TODO: Update URL with list of background and foreground colors (later parse URL for get values).
-  // TODO: Add color picker to inputs.
 </script>
 
 <header class="bg-split border-bottom border-dark py-2">
@@ -62,19 +35,13 @@
 
   <div class="d-flex justify-content-center align-items-center my-2">
     <div>
-      <!-- TODO: Add box showing the color -->
-      <!-- TODO: Should indicate if color is invalid -->
-      <!-- TODO: Add optimize button -->
-      <!-- TODO: Style buttons -->
-      <input
-        type="text"
-        class="border border-dark rounded-3 p-1 fs-lg-2 text-end"
-        value={selectedBack.hex()}
+      <ColorInput
+        bind:this={backRef}
+        bind:active={selectedBack}
+        bind:available={backColors}
+        partner={selectedFore}
+        align="right"
       />
-      <div class="text-end mt-2">
-        <button on:click={randomBackColor}>Random</button>
-        <button on:click={addBackColor}>Add</button>
-      </div>
     </div>
     <div class="mx-3">
       <div>
@@ -82,19 +49,12 @@
       </div>
     </div>
     <div>
-      <!-- TODO: Add box showing the color -->
-      <!-- TODO: Should indicate if color is invalid -->
-      <!-- TODO: Add optimize button -->
-      <!-- TODO: Style buttons -->
-      <input
-        type="text"
-        class="border border-dark rounded-3 p-1 fs-lg-2"
-        value={selectedFore.hex()}
+      <ColorInput
+        bind:this={foreRef}
+        bind:active={selectedFore}
+        bind:available={foreColors}
+        partner={selectedBack}
       />
-      <div class="text-start mt-2">
-        <button on:click={addForeColor}>Add</button>
-        <button on:click={randomForeColor}>Random</button>
-      </div>
     </div>
   </div>
 
@@ -106,6 +66,7 @@
           selected={selectedBack}
           on:change={(evt) => {
             selectedBack = evt.detail;
+            backRef.updateInput(selectedBack);
           }}
           radioName="back-colors"
           class="mb-2 ms-2"
@@ -119,6 +80,7 @@
           selected={selectedFore}
           on:change={(evt) => {
             selectedFore = evt.detail;
+            foreRef.updateInput(selectedFore);
           }}
           radioName="fore-colors"
           class="mb-2 me-2"

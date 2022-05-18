@@ -20,6 +20,7 @@
       : 'text-dark text-shadow-light';
 </script>
 
+<!-- TODO: Make ratio color to be red/orange/yellow/green/black depending of value -->
 <div class="d-inline-block position-relative" style:height={`${svgSize}px`}>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -40 80 80" style:height={`${svgSize}px`}>
     <circle r="39" fill={foreColor.hex()} />
