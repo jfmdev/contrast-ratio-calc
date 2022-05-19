@@ -67,6 +67,11 @@ body {
   outline: 0 none;
 }
 
+.size-30 {
+  height: 30px;
+  width: 30px;
+}
+
 .text-shadow-dark {
   text-shadow: 1px 1px 3px $dark, 1px -1px 3px $dark, -1px 1px 3px $dark, -1px -1px 3px $dark;
 }

@@ -72,14 +72,17 @@
 </script>
 
 <!-- TODO: Use color picker -->
-<input
-  type="text"
-  class={`border rounded-3 p-1 fs-lg-2 outline-0 ${isInvalid ? 'border-danger' : 'border-dark'} ${
-    isRight ? 'text-end' : 'text-start'
-  }`}
-  bind:value={inputText}
-  on:input={onInput}
-/>
+<div class={`d-flex ${isRight ? 'flex-row-reverse' : 'flex-row'}`}>
+  <input
+    type="text"
+    class={`border rounded-3 p-1 fs-lg-2 outline-0 ${isInvalid ? 'border-danger' : 'border-dark'} ${
+      isRight ? 'text-end' : 'text-start'
+    }`}
+    bind:value={inputText}
+    on:input={onInput}
+  />
+  <span class="border border-dark rounded-3 size-30 mx-1" style:background-color={inputText} />
+</div>
 
 <!-- TODO: Style buttons -->
 <div class={`d-flex ${isRight ? 'flex-row-reverse' : 'flex-row'} mt-2`}>

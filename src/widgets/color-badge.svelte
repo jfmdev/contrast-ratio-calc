@@ -44,6 +44,7 @@
   />
   <label for={id} class={`font-monospace clickable ${labelClass}`}>{color.hex()}</label>
   {#if deletable}
+    <!-- TODO: Style button -->
     <button class="ms-1 rounded-circle clickable" on:click={onBtnClick}>X</button>
   {/if}
 </div>
