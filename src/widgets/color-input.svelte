@@ -28,7 +28,7 @@
     updateInput(active);
   });
 
-  export const updateInput = newColor => {
+  export const updateInput = (newColor) => {
     inputText = newColor ? newColor.hex() : isRight ? '#fff' : '#000';
   };
 

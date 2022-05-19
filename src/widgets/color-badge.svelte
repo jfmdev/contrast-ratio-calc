@@ -4,11 +4,9 @@
 
   const dispatch = createEventDispatcher();
 
-  // TODO: Add delete button.
-  // TODO: Add property to show/hide delete button.
-
   // Properties.
   export let color;
+  export let deletable;
   export let radioName;
   export let selected;
 
@@ -19,7 +17,11 @@
 
   // Functions.
   function onChange() {
-    dispatch('change', color);
+    dispatch('select', color);
+  }
+
+  function onBtnClick() {
+    dispatch('remove', color);
   }
 
   // Auxiliary code to read instance class attribute.
@@ -41,4 +43,7 @@
     on:change={onChange}
   />
   <label for={id} class={`font-monospace clickable ${labelClass}`}>{color.hex()}</label>
+  {#if deletable}
+    <button class="ms-1 rounded-circle clickable" on:click={onBtnClick}>X</button>
+  {/if}
 </div>
