@@ -25,12 +25,6 @@ body {
   padding: 0;
 }
 
-.absolute-center {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .bg-gray-200 {
   background-color: $gray-200;
 }
@@ -68,6 +62,10 @@ body {
   font-size: 0.8em;
 }
 
+.min-w-80px {
+  min-width: 80px;
+}
+
 .outline-0 {
   outline: 0 none;
 }
@@ -77,18 +75,10 @@ body {
   width: 30px;
 }
 
-.text-shadow-dark {
-  text-shadow: 1px 1px 3px $dark, 1px -1px 3px $dark, -1px 1px 3px $dark, -1px -1px 3px $dark;
-}
-
-.text-shadow-light {
-  text-shadow: 1px 1px 2px $light, 1px -1px 2px $light, -1px 1px 2px $light, -1px -1px 2px $light;
-}
-
-.triangle-down-12px {
+.triangle-down-8px {
   width: 0;
   height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-top: 12px solid #000;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #000;
 }

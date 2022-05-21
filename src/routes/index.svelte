@@ -4,8 +4,12 @@
 
   import ColorBadge from '../widgets/color-badge.svelte';
   import ColorInput from '../widgets/color-input.svelte';
-  import ContrastChart from '../widgets/contrast-chart.svelte';
+  import RatioChart from '../widgets/ratio-chart.svelte';
+  import Taijitu from '../widgets/taijitu.svelte';
   import TextSamples from '../widgets/text-samples.svelte';
+
+  const BLACK = Color('#000');
+  const WHITE = Color('#FFF');
 
   // Initialize lists with Bootstrap 5 colors.
   let backColors = [Color('#CCE5FF'), Color('#E9ECEF'), Color('#F8F9FA')];
@@ -77,8 +81,8 @@
         align="right"
       />
     </div>
-    <div class="mx-3 text-center">
-      <ContrastChart back={selectedBack} fore={selectedFore} size="lg" ratioBar={true} />
+    <div class="mx-3">
+      <Taijitu back={selectedBack || WHITE} fore={selectedFore || BLACK} size="lg" />
     </div>
     <div>
       <ColorInput
@@ -90,7 +94,7 @@
     </div>
   </div>
 
-  <div class="d-flex">
+  <div class="d-flex justify-content-center">
     <div class="flex-1 pe-4 text-end">
       {#each backColors as backColor}
         <ColorBadge
@@ -103,6 +107,9 @@
           class="mb-2 ms-2"
         />
       {/each}
+    </div>
+    <div class="mx-2 min-w-80px">
+      <RatioChart back={selectedBack || WHITE} fore={selectedFore || BLACK} />
     </div>
     <div class="flex-1 ps-4 text-start">
       {#each foreColors as foreColor}
@@ -129,7 +136,7 @@
       <div class="row">
         {#each foreColors as foreColor}
           <div class="col">
-            <ContrastChart back={backColor} fore={foreColor} />
+            <Taijitu back={backColor} fore={foreColor} />
           </div>
         {/each}
       </div>
