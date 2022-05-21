@@ -77,10 +77,8 @@
         align="right"
       />
     </div>
-    <div class="mx-3">
-      <div>
-        <ContrastChart back={selectedBack} fore={selectedFore} size="lg" />
-      </div>
+    <div class="mx-3 text-center">
+      <ContrastChart back={selectedBack} fore={selectedFore} size="lg" ratioBar={true} />
     </div>
     <div>
       <ColorInput

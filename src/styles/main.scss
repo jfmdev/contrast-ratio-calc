@@ -35,6 +35,11 @@ body {
   background-color: $gray-200;
 }
 
+// CAVEAT: The gradient uses a logarithmic scale due to breakpoints (3 and 4.5) being way smaller than max value (21).
+.bg-ratio-bar {
+  background: linear-gradient(90deg, #f00 0%, #ff0 35%, #0f0 49%, #080 100%);
+}
+
 .bg-split {
   background: linear-gradient(90deg, #ddd 0%, #fff 50%, #ddd 50%, #fff 100%);
 }
@@ -78,4 +83,12 @@ body {
 
 .text-shadow-light {
   text-shadow: 1px 1px 2px $light, 1px -1px 2px $light, -1px 1px 2px $light, -1px -1px 2px $light;
+}
+
+.triangle-down-12px {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid #000;
 }
