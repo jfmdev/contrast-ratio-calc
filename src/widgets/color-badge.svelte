@@ -12,8 +12,10 @@
 
   // Internal variables.
   let id = uniqueId('radio-color-');
-  $: labelClass = color.isDark() ? 'text-light' : 'text-dark';
+
+  $: deleteClass = color.isDark() ? 'text-danger-light' : 'text-danger-dark';
   $: isChecked = selected && selected.rgbNumber() === color.rgbNumber();
+  $: labelClass = color.isDark() ? 'text-light' : 'text-dark';
 
   // Functions.
   function onChange() {
@@ -30,7 +32,9 @@
 </script>
 
 <div
-  class={`border border-dark rounded-pill d-inline-flex align-items-center p-1 ${classProp || ''}`}
+  class={`border border-gray-500 rounded-3 fs-sm-1 d-inline-flex align-items-center ${
+    classProp || ''
+  }`}
   style:background-color={color.hex()}
 >
   <input
@@ -44,7 +48,8 @@
   />
   <label for={id} class={`font-monospace clickable ${labelClass}`}>{color.hex()}</label>
   {#if deletable}
-    <!-- TODO: Style button -->
-    <button class="ms-1 rounded-circle clickable" on:click={onBtnClick}>X</button>
+    <button class={`btn p-0 ${deleteClass} mx-1`} on:click={onBtnClick}>
+      <i class="bi bi-x-circle-fill" />
+    </button>
   {/if}
 </div>

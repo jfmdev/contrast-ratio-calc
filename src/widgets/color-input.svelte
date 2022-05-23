@@ -117,13 +117,33 @@
   <span class="border border-dark rounded-3 size-30 mx-1" style:background-color={inputText} />
 </div>
 
-<!-- TODO: Style buttons -->
 <div class={`d-flex ${isRight ? 'flex-row-reverse' : 'flex-row'} mt-2`}>
-  <button on:click={addColor} disabled={isInvalid || alreadyAdded} title="Add color to list"
-    >Add</button
+  <button
+    class="btn btn-success btn-sm rounded-pill"
+    on:click={addColor}
+    disabled={isInvalid || alreadyAdded}
+    title="Add color to list"
   >
-  <button on:click={improve} disabled={isInvalid || !partner} class="mx-2" title="Improve contrast"
-    >Improve</button
+    <i class="bi bi-plus-circle-fill" />
+    Add
+  </button>
+
+  <button
+    class="btn btn-primary btn-sm rounded-pill mx-2"
+    on:click={improve}
+    disabled={isInvalid || !partner}
+    title="Improve contrast"
   >
-  <button on:click={setRandom} title="Get a random color">Random</button>
+    <i class="bi bi-lightbulb" />
+    Improve
+  </button>
+
+  <button
+    class="btn btn-secondary btn-sm rounded-pill"
+    on:click={setRandom}
+    title="Get a random color"
+  >
+    <i class="bi bi-arrow-repeat" />
+    Random
+  </button>
 </div>
