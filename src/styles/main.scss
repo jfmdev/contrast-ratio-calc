@@ -25,6 +25,15 @@ body {
   padding: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .bg-gray-200 {
   background-color: $gray-200;
 }
@@ -36,6 +45,14 @@ body {
 
 .bg-split {
   background: linear-gradient(90deg, #ddd 0%, #fff 50%, #ddd 50%, #fff 100%);
+}
+
+.border-gray-300 {
+  border-color: $gray-300 !important;
+}
+
+.border-collapse {
+  border-collapse: collapse;
 }
 
 .clickable {

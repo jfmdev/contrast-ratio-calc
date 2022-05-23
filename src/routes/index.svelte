@@ -5,6 +5,7 @@
   import ColorBadge from '../widgets/color-badge.svelte';
   import ColorInput from '../widgets/color-input.svelte';
   import RatioChart from '../widgets/ratio-chart.svelte';
+  import RatiosTable from '../widgets/ratios-table.svelte';
   import Taijitu from '../widgets/taijitu.svelte';
   import TextSamples from '../widgets/text-samples.svelte';
 
@@ -128,23 +129,16 @@
 </header>
 
 <main class="py-2">
+  <h2 class="text-center m-2">Text samples</h2>
+
   <TextSamples {backColors} {foreColors} />
 
-  <!-- TODO: Improve how ratio matrix is displayed -->
-  <div class="container text-center mt-3">
-    {#each backColors as backColor}
-      <div class="row">
-        {#each foreColors as foreColor}
-          <div class="col">
-            <Taijitu back={backColor} fore={foreColor} />
-          </div>
-        {/each}
-      </div>
-    {/each}
-  </div>
+  <h2 class="text-center m-2">Ratio table</h2>
+
+  <RatiosTable {backColors} {foreColors} />
 </main>
 
-<footer class="bg-gray-200 border-top border-dark text-center fs-sm-2">
+<footer class="bg-gray-200 border-top border-dark text-center fs-sm-2 mt-2">
   <p class="my-1">
     <strong>Copyright &copy; 2022 JFMDev</strong> |
     <a href="https://github.com/jfmdev/contrast-ratio-tool" title="See this project at Github"
