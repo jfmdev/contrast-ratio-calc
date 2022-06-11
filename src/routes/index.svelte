@@ -24,20 +24,20 @@
     Color('#17A2B8')
   ];
 
-  let selectedBack = backColors[backColors.length - 1];
-  let selectedFore = foreColors[0];
+  let backIndex = backColors.length - 1;
+  let foreIndex = 0;
 
   let backRef;
   let foreRef;
 
-  // CAVEAT: Since Svelte don't has "watchers",inputs need to be manually notified when a badge is clicked.
-  function selectColor(newColor, type) {
+  // CAVEAT: Since Svelte don't has "watchers", inputs need to be manually notified when a badge is clicked.
+  function selectColor(colorIndex, type) {
     if (type === 'back') {
-      selectedBack = newColor;
-      backRef.updateInput(selectedBack);
+      backIndex = colorIndex;
+      backRef.updateInput(backColors[colorIndex]);
     } else {
-      selectedFore = newColor;
-      foreRef.updateInput(selectedFore);
+      foreIndex = colorIndex;
+      foreRef.updateInput(foreColors[colorIndex]);
     }
   }
 
@@ -76,50 +76,52 @@
     <div>
       <ColorInput
         bind:this={backRef}
-        bind:active={selectedBack}
-        bind:available={backColors}
-        partner={selectedFore}
+        bind:colorList={backColors}
+        bind:colorIndex={backIndex}
+        partner={foreColors[foreIndex]}
         align="right"
       />
     </div>
     <div class="mx-3">
-      <Taijitu back={selectedBack || WHITE} fore={selectedFore || BLACK} size="lg" />
+      <Taijitu
+        back={backColors[backIndex] || WHITE}
+        fore={foreColors[foreIndex] || BLACK}
+        size="lg"
+      />
     </div>
     <div>
       <ColorInput
         bind:this={foreRef}
-        bind:active={selectedFore}
-        bind:available={foreColors}
-        partner={selectedBack}
+        bind:colorList={foreColors}
+        bind:colorIndex={foreIndex}
+        partner={backColors[backIndex]}
       />
     </div>
   </div>
 
   <div class="d-flex justify-content-center">
     <div class="flex-1 pe-4 text-end">
-      {#each backColors as backColor}
+      {#each backColors as backColor, index}
         <ColorBadge
           color={backColor}
-          deletable={backColors.length > 1}
-          selected={selectedBack}
-          on:select={(evt) => selectColor(evt.detail, 'back')}
-          on:remove={(evt) => removeColor(evt.detail, 'back')}
+          selected={backIndex === index}
+          on:select={() => selectColor(index, 'back')}
+          on:remove={() => removeColor(index, 'back')}
           radioName="back-colors"
           class="mb-2 ms-2"
         />
       {/each}
     </div>
     <div class="mx-2 min-w-80px">
-      <RatioChart back={selectedBack || WHITE} fore={selectedFore || BLACK} />
+      <RatioChart back={backColors[backIndex] || WHITE} fore={foreColors[foreIndex] || BLACK} />
     </div>
     <div class="flex-1 ps-4 text-start">
-      {#each foreColors as foreColor}
+      {#each foreColors as foreColor, index}
         <ColorBadge
           color={foreColor}
-          deletable={foreColors.length > 1}
-          selected={selectedFore}
-          on:select={(evt) => selectColor(evt.detail, 'fore')}
-          on:remove={(evt) => removeColor(evt.detail, 'fore')}
+          selected={foreIndex === index}
+          on:select={() => selectColor(index, 'fore')}
+          on:remove={() => removeColor(index, 'fore')}
           radioName="fore-colors"
           class="mb-2 me-2"
         />

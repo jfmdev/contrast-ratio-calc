@@ -6,15 +6,14 @@
 
   // Properties.
   export let color;
-  export let deletable;
   export let radioName;
   export let selected;
 
   // Internal variables.
   let id = uniqueId('radio-color-');
 
+  $: deletable = !selected;
   $: deleteClass = color.isDark() ? 'text-danger-light' : 'text-danger-dark';
-  $: isChecked = selected && selected.rgbNumber() === color.rgbNumber();
   $: labelClass = color.isDark() ? 'text-light' : 'text-dark';
 
   // Functions.
@@ -43,13 +42,15 @@
     name={radioName}
     value={color.rgbNumber()}
     class="my-0 mx-1"
-    checked={isChecked}
+    checked={selected}
     on:change={onChange}
   />
-  <label for={id} class={`font-monospace clickable ${labelClass}`}>{color.hex()}</label>
+  <label for={id} class={`font-monospace clickable my-1 ${labelClass}`}>{color.hex()}</label>
   {#if deletable}
     <button class={`btn p-0 ${deleteClass} mx-1`} on:click={onBtnClick}>
       <i class="bi bi-x-circle-fill" />
     </button>
+  {:else}
+    <i class={`bi bi-check-circle mx-1 my-1 ${labelClass}`} />
   {/if}
 </div>

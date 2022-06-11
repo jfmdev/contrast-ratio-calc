@@ -7,8 +7,8 @@
   // --- Variables --- //
 
   // Properties.
-  export let active;
-  export let available;
+  export let colorIndex;
+  export let colorList;
   export let align = 'left';
   export let partner;
 
@@ -16,17 +16,16 @@
   let inputText = '';
 
   // Computed variables.
-  $: alreadyAdded =
-    available && active && available.find((color) => color.rgbNumber() === active.rgbNumber());
   $: isInvalid = parsedInput === null;
   $: isRight = align === 'right';
-  $: betterColor = improveContrast(active, partner);
+  $: mainColor = colorList[colorIndex];
+  $: betterColor = improveContrast(mainColor, partner);
   $: parsedInput = safeParseColor(inputText);
 
   // --- Initialization --- //
 
   onMount(() => {
-    updateInput(active);
+    updateInput(mainColor);
   });
 
   export const updateInput = (newColor) => {
@@ -36,26 +35,26 @@
   // --- Functions --- //
 
   function addColor() {
-    if (alreadyAdded) {
-      return;
-    }
-
     if (isRight) {
-      available.push(active);
+      colorList.push(mainColor);
+      colorIndex = colorList.length - 1;
     } else {
-      available.unshift(active);
+      colorList.unshift(mainColor);
+      colorIndex = 0;
     }
 
-    available = available;
+    colorList = colorList;
   }
 
   function improve() {
-    active = betterColor;
+    updateMainColor(betterColor);
     inputText = betterColor.hex();
   }
 
   function onInput() {
-    active = parsedInput;
+    if (parsedInput) {
+      updateMainColor(parsedInput);
+    }
   }
 
   function safeParseColor(textColor) {
@@ -67,8 +66,14 @@
   }
 
   function setRandom() {
-    active = randomColor();
-    inputText = active.hex();
+    const newColor = randomColor();
+    updateMainColor(newColor);
+    inputText = newColor.hex();
+  }
+
+  function updateMainColor(newColor) {
+    colorList[colorIndex] = newColor;
+    colorList = colorList;
   }
 </script>
 
@@ -89,18 +94,18 @@
   <button
     class="btn btn-success btn-sm rounded-pill"
     on:click={addColor}
-    disabled={isInvalid || alreadyAdded}
-    title="Add color to list"
+    disabled={isInvalid}
+    title="Duplicate color"
   >
-    <i class="bi bi-bookmark" />
-    Add
+    <i class="bi bi-files" />
+    Clone
   </button>
 
   <button
     class="btn btn-primary btn-sm rounded-pill mx-2"
     on:click={improve}
-    disabled={isInvalid || !active || !partner || active.rgbNumber() === betterColor.rgbNumber()}
-    title="Improve contrast"
+    disabled={isInvalid || mainColor.rgbNumber() === betterColor.rgbNumber()}
+    title="Increase contrast"
   >
     <i class="bi bi-plus-lg" />
     Contrast
