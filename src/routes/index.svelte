@@ -1,6 +1,8 @@
 <script>
   import '../styles/main.scss';
+
   import Color from 'color';
+  import { onMount } from 'svelte';
 
   import ColorBadge from '../widgets/color-badge.svelte';
   import ColorInput from '../widgets/color-input.svelte';
@@ -11,6 +13,8 @@
 
   const BLACK = Color('#000');
   const WHITE = Color('#FFF');
+
+  // --- Initialization --- //
 
   // Initialize lists with Bootstrap 5 colors.
   let backColors = [Color('#CCE5FF'), Color('#E9ECEF'), Color('#F8F9FA')];
@@ -29,6 +33,33 @@
 
   let backRef;
   let foreRef;
+
+  let mounted = false;
+  onMount(() => {
+    // Check if colors must be initialized with values from URL or Local Storage.
+    const newBack = getURLOrLocalStorageColors('back');
+    if (newBack) {
+      backColors = newBack;
+      if (backIndex >= newBack.length) {
+        backIndex = newBack.length - 1;
+      }
+      selectColor(backIndex, 'back'); // CAVEAT: Update input.
+    }
+    const newFore = getURLOrLocalStorageColors('fore');
+    if (newFore) {
+      foreColors = newFore;
+      if (foreIndex >= newFore.length) {
+        foreIndex = newFore.length - 1;
+      }
+      selectColor(foreIndex, 'fore'); // CAVEAT: Update input.
+    }
+
+    mounted = true;
+  });
+
+  $: colorsWatcher = onColorsUpdated(backColors, foreColors);
+
+  // --- Functions --- //
 
   // CAVEAT: Since Svelte don't has "watchers", inputs need to be manually notified when a badge is clicked.
   function selectColor(colorIndex, type) {
@@ -57,7 +88,58 @@
     }
   }
 
-  // TODO: Update URL with list of background and foreground colors (later parse URL for get values).
+  function onColorsUpdated(back, fore) {
+    if (!mounted) return;
+
+    // Update local storage.
+    localStorage.setItem('back', JSON.stringify(back.map((color) => color.hex())));
+    localStorage.setItem('fore', JSON.stringify(fore.map((color) => color.hex())));
+
+    // Update URL.
+    const searchParams = new URLSearchParams();
+    searchParams.set('back', back.map((color) => color.hex().substring(1)).join('-'));
+    searchParams.set('fore', fore.map((color) => color.hex().substring(1)).join('-'));
+    history.replaceState(null, null, '?' + searchParams.toString());
+  }
+
+  function getLocalStorageColors(key) {
+    const res = [];
+
+    try {
+      const rawData = JSON.parse(localStorage.getItem(key));
+      rawData.forEach((colorString) => res.push(new Color(colorString)));
+    } catch (err) {
+      // Do nothing.
+    }
+
+    return res;
+  }
+
+  function getURLParamsColors(key) {
+    const res = [];
+
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has(key)) {
+        const rawData = params.get(key).split('-');
+        rawData.forEach((colorString) => res.push(new Color(`#${colorString}`)));
+      }
+    } catch (err) {
+      // Do nothing.
+    }
+
+    return res;
+  }
+
+  function getURLOrLocalStorageColors(key) {
+    const urlColors = getURLParamsColors(key);
+    if (urlColors.length > 0) return urlColors;
+
+    const lsColors = getLocalStorageColors(key);
+    if (lsColors.length > 0) return lsColors;
+
+    return null;
+  }
 </script>
 
 <header class="bg-split border-bottom border-dark py-2">
