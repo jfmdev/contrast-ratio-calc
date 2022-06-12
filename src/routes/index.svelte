@@ -223,8 +223,8 @@
 <footer class="bg-gray-200 border-top border-dark text-center fs-sm-2 mt-2">
   <p class="my-1">
     <strong>Copyright &copy; 2022 JFMDev</strong> |
-    <a href="https://github.com/jfmdev/contrast-ratio-tool" title="See this project at Github"
-      >https://github.com/jfmdev/contrast-ratio-tool</a
+    <a href="https://github.com/jfmdev/contrast-ratio-calc" title="See this project at Github"
+      >https://github.com/jfmdev/contrast-ratio-calc</a
     >
   </p>
   <p class="my-1">
