@@ -34,18 +34,6 @@
 
   // --- Functions --- //
 
-  function addColor() {
-    if (isRight) {
-      colorList.push(mainColor);
-      colorIndex = colorList.length - 1;
-    } else {
-      colorList.unshift(mainColor);
-      colorIndex = 0;
-    }
-
-    colorList = colorList;
-  }
-
   function improve() {
     updateMainColor(betterColor);
     inputText = betterColor.hex();
@@ -87,36 +75,27 @@
     bind:value={inputText}
     on:input={onInput}
   />
-  <span class="border border-dark rounded-3 size-30 mx-1" style:background-color={inputText} />
-</div>
-
-<div class={`d-flex ${isRight ? 'flex-row-reverse' : 'flex-row'} mt-2`}>
-  <button
-    class="btn btn-success btn-sm rounded-pill"
-    on:click={addColor}
-    disabled={isInvalid}
-    title="Duplicate color"
-  >
-    <i class="bi bi-files" />
-    Clone
-  </button>
 
   <button
-    class="btn btn-primary btn-sm rounded-pill mx-2"
-    on:click={improve}
-    disabled={isInvalid || mainColor.rgbNumber() === betterColor.rgbNumber()}
-    title="Increase contrast"
-  >
-    <i class="bi bi-plus-lg" />
-    Contrast
-  </button>
-
-  <button
-    class="btn btn-secondary btn-sm rounded-pill"
+    type="button"
+    class="btn p-0 border border-dark rounded-3 size-30 mx-1"
+    style:background-color={mainColor}
+    style:color={mainColor.isDark() ? 'white' : 'black'}
     on:click={setRandom}
     title="Get a random color"
   >
     <i class="bi bi-arrow-repeat" />
-    Random
+  </button>
+
+  <button
+    type="button"
+    class="btn p-0 border border-dark rounded-3 size-30 mx-1"
+    style:background-color={betterColor.hex()}
+    style:color={betterColor.isDark() ? 'white' : 'black'}
+    on:click={improve}
+    disabled={isInvalid || mainColor.rgbNumber() === betterColor.rgbNumber()}
+    title="Increase contrast"
+  >
+    <i class="bi bi-lightbulb-fill" />
   </button>
 </div>

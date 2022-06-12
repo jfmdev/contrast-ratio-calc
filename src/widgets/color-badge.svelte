@@ -47,10 +47,10 @@
   />
   <label for={id} class={`font-monospace clickable my-1 ${labelClass}`}>{color.hex()}</label>
   {#if deletable}
-    <button class={`btn p-0 ${deleteClass} mx-1`} on:click={onBtnClick}>
+    <button type="button" class={`btn p-0 ${deleteClass} mx-1`} on:click={onBtnClick}>
       <i class="bi bi-x-circle-fill" />
     </button>
   {:else}
-    <i class={`bi bi-check-circle mx-1 my-1 ${labelClass}`} />
+    <i class={`bi bi-pencil-fill mx-1 my-1 ${labelClass}`} />
   {/if}
 </div>
