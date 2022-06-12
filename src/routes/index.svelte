@@ -72,16 +72,14 @@
     }
   }
 
-  function removeColor(color, type) {
+  function removeColor(colorIndex, type) {
     if (type === 'back') {
-      const colorIndex = backColors.findIndex((item) => item.rgbNumber() === color.rgbNumber());
-      if (colorIndex >= 0 && backColors.length > 1) {
+      if (colorIndex >= 0 && colorIndex < backColors.length) {
         backColors.splice(colorIndex, 1);
         backColors = backColors;
       }
     } else {
-      const colorIndex = foreColors.findIndex((item) => item.rgbNumber() === color.rgbNumber());
-      if (colorIndex >= 0 && foreColors.length > 1) {
+      if (colorIndex >= 0 && colorIndex < foreColors.length) {
         foreColors.splice(colorIndex, 1);
         foreColors = foreColors;
       }

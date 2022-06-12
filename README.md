@@ -10,11 +10,11 @@ A simple tool, implemented with Svelte and Boostrap, for calculate and compare t
 
 This application was created using [SvelteKit](https://kit.svelte.dev/), all commands for build and run locally can be found on the [official docs](https://kit.svelte.dev/docs/introduction), but the most used ones are:
 
-* `yarn` to install all dependencies.
-* `yarn run dev` to run the application locally.
-* `yarn run format` to format the source code using Prettier.
-* `yarn run lint` to identify errors on the source code using ESLint.
-* `yarn run build` to build the application.
+- `yarn` to install all dependencies.
+- `yarn run dev` to run the application locally.
+- `yarn run format` to format the source code using Prettier.
+- `yarn run lint` to identify errors on the source code using ESLint.
+- `yarn run build` to build the application.
 
 ## License
 
