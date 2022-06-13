@@ -14,6 +14,8 @@
 
   // Internal.
   let inputText = '';
+  let nextRandom = randomColor();
+  let colorTimer;
 
   // Computed variables.
   $: isInvalid = parsedInput === null;
@@ -39,7 +41,14 @@
     inputText = betterColor.hex();
   }
 
-  function onInput() {
+  function onColorInput(evt) {
+    clearTimeout(colorTimer);
+    colorTimer = setTimeout(() => {
+      updateMainColor(Color(evt.target.value));
+    }, 100);
+  }
+
+  function onTextInput() {
     if (parsedInput) {
       updateMainColor(parsedInput);
     }
@@ -54,9 +63,10 @@
   }
 
   function setRandom() {
-    const newColor = randomColor();
-    updateMainColor(newColor);
-    inputText = newColor.hex();
+    updateMainColor(nextRandom);
+    inputText = nextRandom.hex();
+
+    nextRandom = randomColor();
   }
 
   function updateMainColor(newColor) {
@@ -65,31 +75,27 @@
   }
 </script>
 
-<!-- TODO: Use color picker -->
 <div class={`d-flex ${isRight ? 'flex-row-reverse' : 'flex-row'}`}>
   <input
     type="text"
-    class={`border rounded-3 p-1 fs-lg-2 outline-0 ${isInvalid ? 'border-danger' : 'border-dark'} ${
-      isRight ? 'text-end' : 'text-start'
+    class={`border fs-lg-2 outline-0 ${isInvalid ? 'border-danger' : 'border-dark'} ${
+      isRight ? 'text-end rounded-end border-start-0' : 'text-start rounded-start  border-end-0'
     }`}
     bind:value={inputText}
-    on:input={onInput}
+    on:input={onTextInput}
+  />
+
+  <input
+    type="color"
+    class={`border border-dark clickable size-32 ${isRight ? 'rounded-start' : 'rounded-end'}`}
+    style:background-color={mainColor.hex()}
+    value={mainColor.hex()}
+    on:input={onColorInput}
   />
 
   <button
     type="button"
-    class="btn p-0 border border-dark rounded-3 size-30 mx-1"
-    style:background-color={mainColor}
-    style:color={mainColor.isDark() ? 'white' : 'black'}
-    on:click={setRandom}
-    title="Get a random color"
-  >
-    <i class="bi bi-arrow-repeat" />
-  </button>
-
-  <button
-    type="button"
-    class="btn p-0 border border-dark rounded-3 size-30 mx-1"
+    class="btn p-0 border border-dark rounded-3 size-32 mx-2"
     style:background-color={betterColor.hex()}
     style:color={betterColor.isDark() ? 'white' : 'black'}
     on:click={improve}
@@ -97,5 +103,16 @@
     title="Increase contrast"
   >
     <i class="bi bi-lightbulb-fill" />
+  </button>
+
+  <button
+    type="button"
+    class="btn p-0 border border-dark rounded-3 size-32"
+    style:background-color={nextRandom}
+    style:color={nextRandom.isDark() ? 'white' : 'black'}
+    on:click={setRandom}
+    title="Get a random color"
+  >
+    <i class="bi bi-arrow-repeat" />
   </button>
 </div>
