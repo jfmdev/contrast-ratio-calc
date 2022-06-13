@@ -91,6 +91,7 @@
     style:background-color={mainColor.hex()}
     value={mainColor.hex()}
     on:input={onColorInput}
+    title="Open color picker"
   />
 
   <button
