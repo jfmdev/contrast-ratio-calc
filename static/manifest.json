@@ -21,8 +21,9 @@
   ],
   "background_color": "#FFFFFF",
   "display": "standalone",
-  "id": "./index.html",
-  "start_url": "./index.html",
+  "id": "/contrast-ratio-calc/",
+  "start_url": "/contrast-ratio-calc/",
+  "scope": "/contrast-ratio-calc/",
   "theme_color": "#17A2B8",
   "screenshots": [
     {
