@@ -21,8 +21,8 @@
   ],
   "background_color": "#FFFFFF",
   "display": "standalone",
-  "id": "./index.html",
-  "start_url": "./index.html",
+  "id": "/",
+  "start_url": "/",
   "theme_color": "#17A2B8",
   "screenshots": [
     {
