@@ -1,5 +1,5 @@
 {
-  "name": "contrast-ratio-tool",
+  "name": "contrast-ratio-calc",
   "version": "1.0.0",
   "description": "A tool to calculate and compare the contrast ratio of colors",
   "scripts": {

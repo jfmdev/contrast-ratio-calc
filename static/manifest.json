@@ -1,0 +1,43 @@
+{
+  "short_name": "contrast-ratio-calc",
+  "name": "Contrast Ratio Calculator",
+  "description": "A tool to calculate and compare the contrast ratio of colors",
+  "icons": [
+    {
+      "src": "./favicon.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    }
+  ],
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "id": "./index.html",
+  "start_url": "./index.html",
+  "theme_color": "#17A2B8",
+  "screenshots": [
+    {
+      "src": "./misc/screenshot-a1.jpg",
+      "type": "image/jpg",
+      "sizes": "1200x900",
+      "form_factor": "wide"
+    },
+    {
+      "src": "./misc/screenshot-a2.jpg",
+      "type": "image/jpg",
+      "sizes": "1200x900",
+      "form_factor": "wide"
+    },
+    {
+      "src": "./img/screenshot-b1.jpg",
+      "type": "image/jpg",
+      "sizes": "766x896",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "./img/screenshot-b2.jpg",
+      "type": "image/jpg",
+      "sizes": "766x896",
+      "form_factor": "narrow"
+    }
+  ]
+}
