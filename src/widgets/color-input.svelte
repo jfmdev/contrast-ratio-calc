@@ -78,7 +78,7 @@
 <div class={`d-flex ${isRight ? 'flex-row-reverse' : 'flex-row'}`}>
   <input
     type="text"
-    class={`border fs-lg-2 outline-0 ${isInvalid ? 'border-danger' : 'border-dark'} ${
+    class={`border fs-lg-2 max-w-125px outline-0 ${isInvalid ? 'border-danger' : 'border-dark'} ${
       isRight ? 'text-end rounded-end border-start-0' : 'text-start rounded-start  border-end-0'
     }`}
     bind:value={inputText}

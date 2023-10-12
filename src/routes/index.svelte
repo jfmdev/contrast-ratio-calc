@@ -180,8 +180,8 @@
     </div>
   </div>
 
-  <div class="d-flex justify-content-center align-items-center my-2">
-    <div>
+  <div class="d-md-flex justify-content-center align-items-center my-2">
+    <div class="py-2 pe-2">
       <ColorInput
         bind:this={backRef}
         bind:colorList={backColors}
@@ -190,14 +190,14 @@
         align="right"
       />
     </div>
-    <div class="mx-3">
+    <div class="text-center mx-3">
       <Taijitu
         back={backColors[backIndex] || WHITE}
         fore={foreColors[foreIndex] || BLACK}
         size="lg"
       />
     </div>
-    <div>
+    <div class="py-2 ps-2">
       <ColorInput
         bind:this={foreRef}
         bind:colorList={foreColors}
@@ -293,12 +293,18 @@
 
   <h2 class="text-center m-2">Ratio table</h2>
 
-  <RatiosTable {backColors} {foreColors} />
+  <div class="w-100 overflow-auto">
+    <RatiosTable {backColors} {foreColors} />
+  </div>
 </main>
 
 <footer class="bg-gray-200 border-top border-dark text-center fs-sm-2 mt-2">
   <p class="my-1">
-    <strong>Copyright &copy; 2022 JFMDev</strong> |
+    <strong>Copyright &copy; 2022 JFMDev</strong>
+
+    <span class="d-none d-sm-inline">|</span>
+    <br class="d-sm-none" />
+
     <a href="https://github.com/jfmdev/contrast-ratio-calc" title="See this project at Github"
       >https://github.com/jfmdev/contrast-ratio-calc</a
     >
