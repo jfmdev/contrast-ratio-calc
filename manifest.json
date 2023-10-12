@@ -7,6 +7,16 @@
       "src": "./favicon.png",
       "type": "image/png",
       "sizes": "128x128"
+    },
+    {
+      "src": "./misc/yin-yang-256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "./misc/yin-yang-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "background_color": "#FFFFFF",
@@ -28,13 +38,13 @@
       "form_factor": "wide"
     },
     {
-      "src": "./img/screenshot-b1.jpg",
+      "src": "./misc/screenshot-b1.jpg",
       "type": "image/jpg",
       "sizes": "766x896",
       "form_factor": "narrow"
     },
     {
-      "src": "./img/screenshot-b2.jpg",
+      "src": "./misc/screenshot-b2.jpg",
       "type": "image/jpg",
       "sizes": "766x896",
       "form_factor": "narrow"
